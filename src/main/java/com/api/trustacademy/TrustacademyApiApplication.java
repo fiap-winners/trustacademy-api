@@ -1,4 +1,4 @@
-package com.trustacademy.api;
+package com.api.trustacademy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
