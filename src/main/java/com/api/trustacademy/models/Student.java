@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "students")
 public class Student {
 
 	@Id

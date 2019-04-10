@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Id;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -20,6 +21,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "institutes")
 public class Institute {
 
 	@Id
