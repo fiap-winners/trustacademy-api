@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
@@ -31,7 +31,7 @@ public class Course {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
-	private Set<Course> topics;
+	private Set<Topic> topics;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)

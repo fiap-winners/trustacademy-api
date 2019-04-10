@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
@@ -38,7 +38,8 @@ public class Document {
     @JoinColumn(name = "department_id", nullable = false)
 	private Department department;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "document")
+	@OneToMany
+    @JoinColumn(name = "fk_course")
 	private Set<Course> finishedCourses;
 	
 	@CreatedDate
