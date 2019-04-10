@@ -1,4 +1,4 @@
-package src.test.java.com.api.trustacademy;
+package com.api.trustacademy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

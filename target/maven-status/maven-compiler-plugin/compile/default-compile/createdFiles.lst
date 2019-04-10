@@ -1,13 +1,7 @@
 com/api/trustacademy/models/Institute.class
-com/api/trustacademy/dao/StudentRepository.class
-com/api/trustacademy/dao/DocumentRepository.class
 com/api/trustacademy/models/Department.class
 com/api/trustacademy/models/Topic.class
-com/api/trustacademy/dao/DepartmentRepository.class
-com/api/trustacademy/dao/CourseRepository.class
-com/api/trustacademy/dao/TopicRepository.class
 com/api/trustacademy/models/Student.class
 com/api/trustacademy/models/Course.class
 com/api/trustacademy/models/Document.class
 com/api/trustacademy/TrustacademyApiApplication.class
-com/api/trustacademy/dao/InstituteRepository.class
