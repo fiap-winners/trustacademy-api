@@ -30,18 +30,18 @@ public class Department {
 
 	@Column
 	private String name;
-	
+
 	@Column
 	private String code;
-	
+
 	@CreatedDate
 	private Date createdAt;
 
 	@LastModifiedDate
 	private Date modifiedAt;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "institute_id", nullable = false)
+	@JoinColumn(name = "institute_id", nullable = false)
 	private Institute institute;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department")

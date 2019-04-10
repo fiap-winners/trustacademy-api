@@ -1,4 +1,4 @@
-package com.api.trustacademy.dao;
+package com.api.trustacademy.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import com.api.trustacademy.models.Topic;

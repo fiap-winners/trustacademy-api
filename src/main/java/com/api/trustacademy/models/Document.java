@@ -25,23 +25,23 @@ public class Document {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id", nullable = false)
+	@JoinColumn(name = "student_id", nullable = false)
 	private Student student;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "institute_id", nullable = false)
+	@JoinColumn(name = "institute_id", nullable = false)
 	private Institute institute;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id", nullable = false)
+	@JoinColumn(name = "department_id", nullable = false)
 	private Department department;
-	
+
 	@OneToMany
-    @JoinColumn(name = "fk_course")
+	@JoinColumn(name = "fk_course")
 	private Set<Course> finishedCourses;
-	
+
 	@CreatedDate
 	private Date createdAt;
 

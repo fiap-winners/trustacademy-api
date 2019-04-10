@@ -25,13 +25,13 @@ public class Institute {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Department> departments;
-	
+
 	@CreatedDate
 	private Date createdAt;
 

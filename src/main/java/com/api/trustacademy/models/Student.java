@@ -24,23 +24,23 @@ import lombok.Data;
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column
 	private String name;
-	
+
 	@CreatedDate
 	private Date createdAt;
-	
+
 	@LastModifiedDate
 	private Date modifiedAt;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "institute_id")
+	@JoinColumn(name = "institute_id")
 	private Institute institute;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Document> documents;
-	
+
 }

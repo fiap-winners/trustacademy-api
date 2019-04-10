@@ -26,15 +26,15 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column
 	private String name;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
 	private Set<Topic> topics;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id", nullable = false)
+	@JoinColumn(name = "department_id", nullable = false)
 	private Department department;
 
 	@CreatedDate
@@ -42,5 +42,5 @@ public class Course {
 
 	@LastModifiedDate
 	private Date modifiedAt;
-	
+
 }
