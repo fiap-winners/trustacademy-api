@@ -1,4 +1,4 @@
-package com.api.trustacademy.repository;
+package com.api.trustacademy.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
