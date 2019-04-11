@@ -45,5 +45,4 @@ public class Course {
 
 	@LastModifiedDate
 	private Date modifiedAt;
-
 }

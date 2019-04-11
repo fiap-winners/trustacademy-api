@@ -49,13 +49,4 @@ public class Department {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department")
 	private Set<Course> courses;
-
-	@Override
-	public String toString() {
-		return "Department{" +
-			"id=" + id +
-			", name='" + name + '\'' +
-			", code='" + code + '\'' +
-			'}';
-	}
 }

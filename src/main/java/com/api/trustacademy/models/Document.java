@@ -49,11 +49,4 @@ public class Document {
 
 	@LastModifiedDate
 	private Date modifiedAt;
-
-	@Override
-	public String toString() {
-		return "Document{" +
-			"id=" + id +
-			'}';
-	}
 }

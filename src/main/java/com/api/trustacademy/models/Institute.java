@@ -49,13 +49,4 @@ public class Institute {
 
 	@LastModifiedDate
 	private Date modifiedAt;
-
-	@Override
-	public String toString() {
-		return "Institute{" +
-			"id=" + id +
-			", name='" + name + '\'' +
-			", code='" + code + '\'' +
-			'}';
-	}
 }
