@@ -15,3 +15,10 @@ INSERT INTO topics(id, name, course_id, code, description, created_at, modified_
   (1, 'Introduction to Computer Science and Programming', 1, 'CS600', 'This subject is aimed at students with little or no programming experience. ', GETDATE(), GETDATE()),
   (2, 'Artificial Intelligence', 1, 'AI601', 'This subject is aimed at students with little or no programming experience. It aims to provide students with an understanding of the role computation can play in solving problems.', GETDATE(), GETDATE()),
   (3, 'Artificial Intelligence II', 1, 'AI602', 'This course introduces students to the basic knowledge representation, problem solving, and learning methods of artificial intelligence.', GETDATE(), GETDATE());
+
+INSERT INTO students(id, name, institute_id, created_at, modified_at) VALUES
+  (1, 'Henrique Lopes', 1, GETDATE(), GETDATE()),
+  (2, 'Leonardo Cristofani', 1, GETDATE(), GETDATE()),
+  (3, 'Mauricio Carvalho', 1, GETDATE(), GETDATE()),
+  (4, 'Pedro Silva', 2, GETDATE(), GETDATE()),
+  (5, 'Tiago Silvino', 2, GETDATE(), GETDATE());

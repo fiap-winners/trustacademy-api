@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,9 +21,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "departments")
 public class Department {
@@ -48,4 +49,13 @@ public class Department {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department")
 	private Set<Course> courses;
+
+	@Override
+	public String toString() {
+		return "Department{" +
+			"id=" + id +
+			", name='" + name + '\'' +
+			", code='" + code + '\'' +
+			'}';
+	}
 }
