@@ -30,6 +30,9 @@ public class Institute {
 
 	@Column
 	private String name;
+	
+	@Column
+	private String code;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Department> departments;
