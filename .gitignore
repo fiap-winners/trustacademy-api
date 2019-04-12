@@ -25,3 +25,5 @@ hs_err_pid*
 # do not include compiled files
 /target
 /bin
+/.idea
+trustacademy-api.iml

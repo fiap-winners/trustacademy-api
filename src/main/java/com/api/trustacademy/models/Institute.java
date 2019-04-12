@@ -13,13 +13,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "institutes")
 public class Institute {
@@ -36,6 +37,12 @@ public class Institute {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Department> departments;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
+	private Set<Student> students;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
+	private Set<Document> documents;
 
 	@CreatedDate
 	private Date createdAt;

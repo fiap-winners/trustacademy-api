@@ -15,12 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "courses")
 public class Course {
@@ -44,5 +45,4 @@ public class Course {
 
 	@LastModifiedDate
 	private Date modifiedAt;
-
 }
