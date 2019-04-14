@@ -22,3 +22,8 @@ INSERT INTO students(id, name, institute_id, created_at, modified_at) VALUES
   (3, 'Mauricio Carvalho', 1, GETDATE(), GETDATE()),
   (4, 'Pedro Silva', 2, GETDATE(), GETDATE()),
   (5, 'Tiago Silvino', 2, GETDATE(), GETDATE());
+
+INSERT INTO documents(id, student_id, institute_id, department_id, course_id, content, created_at, modified_at) VALUES
+  (1, 1, 1, 1, 1, 'conteúdo a', GETDATE(), GETDATE()),
+  (2, 1, 1, 1, 1, 'conteúdo a alterado', GETDATE(), GETDATE()),
+  (3, 2, 1, 1, 1, 'conteúdo b', GETDATE(), GETDATE());
