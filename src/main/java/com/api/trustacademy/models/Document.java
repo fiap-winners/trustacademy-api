@@ -38,6 +38,10 @@ public class Document implements Serializable {
 	@JoinColumn(name = "course_id")
 	private Course course;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "document_type_id")
+	private DocumentType type;
+
 	@Column
 	private String content;
 
