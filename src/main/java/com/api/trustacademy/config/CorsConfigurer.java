@@ -8,9 +8,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
-public class CorsConfig {
+public class CorsConfigurer {
+	
+  private static final String API_URI = "/api/**";
+	
   @Bean
-  public FilterRegistrationBean corsFilterWithOrder() {
+  public FilterRegistrationBean<CorsFilter> corsFilterWithOrder() {
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
     org.springframework.web.cors.CorsConfiguration config = new org.springframework.web.cors.CorsConfiguration();
@@ -19,8 +22,8 @@ public class CorsConfig {
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
 
-    source.registerCorsConfiguration("/api/**", config);
-    FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+    source.registerCorsConfiguration(API_URI, config);
+    FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(source));
     bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
     return bean;
   }
