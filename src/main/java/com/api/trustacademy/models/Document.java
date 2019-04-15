@@ -16,7 +16,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Table(name = "documents")
 public class Document implements Serializable {
 	
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
