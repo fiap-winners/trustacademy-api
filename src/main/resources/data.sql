@@ -10,11 +10,6 @@ INSERT INTO departments (id, name, code, institute_id, created_at, modified_at) 
 INSERT INTO courses (id, name, department_id, created_at, modified_at) VALUES
   (1, 'System Analysis and Development', 1, GETDATE(), GETDATE()),
   (2, 'Computer Science', 1, GETDATE(), GETDATE());
-  
-INSERT INTO topics(id, name, course_id, code, description, created_at, modified_at) VALUES
-  (1, 'Introduction to Computer Science and Programming', 1, 'CS600', 'This subject is aimed at students with little or no programming experience. ', GETDATE(), GETDATE()),
-  (2, 'Artificial Intelligence', 1, 'AI601', 'This subject is aimed at students with little or no programming experience. It aims to provide students with an understanding of the role computation can play in solving problems.', GETDATE(), GETDATE()),
-  (3, 'Artificial Intelligence II', 1, 'AI602', 'This course introduces students to the basic knowledge representation, problem solving, and learning methods of artificial intelligence.', GETDATE(), GETDATE());
 
 INSERT INTO students(id, name, institute_id, created_at, modified_at) VALUES
   (1, 'Henrique Lopes', 1, GETDATE(), GETDATE()),
@@ -24,6 +19,6 @@ INSERT INTO students(id, name, institute_id, created_at, modified_at) VALUES
   (5, 'Tiago Silvino', 2, GETDATE(), GETDATE());
 
 INSERT INTO documents(id, student_id, institute_id, department_id, course_id, content, created_at, modified_at) VALUES
-  (1, 1, 1, 1, 1, 'conteúdo a', GETDATE(), GETDATE()),
-  (2, 1, 1, 1, 1, 'conteúdo a alterado', GETDATE(), GETDATE()),
-  (3, 2, 1, 1, 1, 'conteúdo b', GETDATE(), GETDATE());
+  (1, 1, 1, 1, 1, 'Graduate course diploma', GETDATE(), GETDATE()),
+  (2, 1, 1, 1, 1, 'Course transcript file', GETDATE(), GETDATE()),
+  (3, 2, 1, 1, 1, 'Certificate of regular attendance', GETDATE(), GETDATE());
