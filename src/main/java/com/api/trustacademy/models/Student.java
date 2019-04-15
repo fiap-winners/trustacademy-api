@@ -1,5 +1,6 @@
 package com.api.trustacademy.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -24,7 +25,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Setter
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
