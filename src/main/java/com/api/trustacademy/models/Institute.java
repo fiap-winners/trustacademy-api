@@ -46,6 +46,9 @@ public class Institute implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Document> documents;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
+	private Set<DocumentType> documentTypes;
+
 	@CreatedDate
 	private Date createdAt;
 
