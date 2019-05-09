@@ -6,4 +6,5 @@ import com.api.trustacademy.models.Institute;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InstituteRepository extends CrudRepository<Institute, Long> {}
+public interface InstituteRepository extends CrudRepository<Institute, Long> {
+}
