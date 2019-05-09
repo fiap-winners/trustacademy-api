@@ -20,10 +20,14 @@ import org.springframework.data.annotation.CreatedDate;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "institutes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class Institute implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +37,7 @@ public class Institute implements Serializable {
 
 	@Column
 	private String name;
-	
+
 	@Column
 	private String code;
 

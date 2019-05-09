@@ -21,10 +21,14 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "students")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 
