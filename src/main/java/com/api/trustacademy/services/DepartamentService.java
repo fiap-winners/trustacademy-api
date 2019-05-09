@@ -6,25 +6,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.trustacademy.models.Student;
-import com.api.trustacademy.repositories.StudentRepository;
+import com.api.trustacademy.models.Department;
+import com.api.trustacademy.repositories.DepartmentRepository;
 
 @Service
-public class StudentService {
+public class DepartamentService {
 
 	@Autowired
-	StudentRepository repository;
+	DepartmentRepository repository;
 
-	public List<Student> findAll() {
+	public List<Department> findAll() {
 		return repository.findAll();
 	}
 
-	public Optional<Student> findById(Long id) {
+	public Optional<Department> findById(Long id) {
 		return repository.findById(id);
 	}
 
-	public Student save(Student student) {
-		return repository.save(student);
+	public Department save(Department department) {
+		return repository.save(department);
 	}
 
 	public void deleteById(Long id) {
