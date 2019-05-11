@@ -68,6 +68,26 @@ public class StudentController {
     return optionalStudent.get();
   }
 
+  @PutMapping("institutes/{instituteId}/students/{studentId}")
+  public Student updateStudent(@PathVariable long instituteId, @PathVariable long studentId, @RequestBody Student updates) {
+    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
+    if (!instituteOptional.isPresent()) {
+      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
+    }
+
+    Optional<Student> optionalStudent = studentService.findById(studentId);
+    if (!optionalStudent.isPresent()) {
+      throw new StudentNotFoundException("Student with id " + studentId + " not found");
+    }
+
+    Student student = optionalStudent.get();
+
+    student.setName(updates.getName());
+    student.setInstitute(instituteOptional.get());
+
+    return studentService.save(student);
+  }
+
   @DeleteMapping("institutes/{instituteId}/students/{studentId}")
   public Student deleteStudent(@PathVariable Long instituteId, @PathVariable long studentId) {
     Optional<Institute> instituteOptional = instituteService.findById(instituteId);
@@ -82,22 +102,5 @@ public class StudentController {
 
     studentService.deleteById(studentId);
     return optionalStudent.get();
-  }
-
-  @PutMapping("institutes/{instituteId}/students/{studentId}")
-  public Student updateStudent(@PathVariable long instituteId, @PathVariable long studentId, @RequestBody Student student) {
-    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
-    if (!instituteOptional.isPresent()) {
-      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
-    }
-
-    Optional<Student> optionalStudent = studentService.findById(studentId);
-    if (!optionalStudent.isPresent()) {
-      throw new StudentNotFoundException("Student with id " + studentId + " not found");
-    }
-
-    student.setInstitute(instituteOptional.get());
-    student.setId(studentId);
-    return studentService.save(student);
   }
 }

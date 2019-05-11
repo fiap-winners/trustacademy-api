@@ -19,9 +19,9 @@ INSERT INTO students(id, name, institute_id, created_at, modified_at) VALUES
   (1005, 'Tiago Silvino', 1001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO document_types(id, name, institute_id, created_at, modified_at) VALUES
-  (1001, 'Histórico Escolar', 1001, GETDATE(), GETDATE()),
-  (1002, 'Comprovante de Matrícula', 1001, GETDATE(), GETDATE()),
-  (1003, 'Certificado de Conclusão', 1001, GETDATE(), GETDATE());
+  (1001, 'Histórico Escolar', 1001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (1002, 'Comprovante de Matrícula', 1001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (1003, 'Certificado de Conclusão', 1001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO documents(id, student_id, institute_id, department_id, course_id, document_type_id, content, created_at, modified_at) VALUES
   (1001, 1001, 1001, 1001, 1001, 1001, 'Conteúdo a v1', GETDATE(), GETDATE()),

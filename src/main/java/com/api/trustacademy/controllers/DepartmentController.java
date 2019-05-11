@@ -61,7 +61,7 @@ public class DepartmentController {
   }
 
   @PutMapping("institutes/{instituteId}/departments/{departmentId}")
-  public Department updateDepartment(@PathVariable long instituteId, @PathVariable long departmentId, @RequestBody Department department) {
+  public Department updateDepartment(@PathVariable long instituteId, @PathVariable long departmentId, @RequestBody Department updates) {
     Optional<Institute> instituteOptional = instituteService.findById(instituteId);
     if (!instituteOptional.isPresent()) {
       throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
@@ -72,8 +72,11 @@ public class DepartmentController {
       throw new DepartmentNotFoundException("Department with id " + departmentId + " not found");
     }
 
+    Department department = departmentOptional.get();
+
+    department.setName(updates.getName());
+    department.setCode(updates.getCode());
     department.setInstitute(instituteOptional.get());
-    department.setId(departmentOptional.get().getId());
 
     return departamentService.save(department);
   }
