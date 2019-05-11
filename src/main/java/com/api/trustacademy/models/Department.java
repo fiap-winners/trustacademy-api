@@ -30,7 +30,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "departments")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
