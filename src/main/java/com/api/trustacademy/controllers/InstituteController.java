@@ -32,7 +32,7 @@ public class InstituteController {
   }
 
   @PutMapping("institutes/{instituteId}")
-  public Institute getInstitute(@PathVariable long instituteId, @RequestBody Institute updates) {
+  public Institute updateInstitute(@PathVariable long instituteId, @RequestBody Institute updates) {
     Optional<Institute> instituteOptional = instituteService.findById(instituteId);
 
     if (!instituteOptional.isPresent()) {
