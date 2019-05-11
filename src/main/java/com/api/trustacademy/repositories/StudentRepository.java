@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.api.trustacademy.models.Student;
 
+import javax.transaction.Transactional;
+
 @Repository
+@Transactional
 public interface StudentRepository extends JpaRepository<Student, Long> {
 }

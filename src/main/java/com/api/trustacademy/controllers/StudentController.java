@@ -1,11 +1,13 @@
 package com.api.trustacademy.controllers;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import com.api.trustacademy.exceptions.InstituteNotFoundException;
+import com.api.trustacademy.exceptions.StudentNotFoundException;
+import com.api.trustacademy.models.Institute;
+import com.api.trustacademy.services.InstituteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,45 +22,82 @@ import com.api.trustacademy.services.StudentService;
 @RestController
 public class StudentController {
 
-	@Autowired
-	StudentService service;
+  private StudentService studentService;
+  private InstituteService instituteService;
 
-	@GetMapping("/students")
-	List<Student> getAllStudents() {
-		return service.findAll();
-	}
-	
-	@PostMapping("/students")
-	Student createStudent(@RequestBody Student student) {
-		return service.save(student);
-	}
+  @Autowired
+  public StudentController(StudentService studentService, InstituteService instituteService) {
+    this.studentService = studentService;
+    this.instituteService = instituteService;
+  }
 
-	@GetMapping("/students/{id}")
-	ResponseEntity<Student> getStudent(@PathVariable long id) {
-		Optional<Student> student = service.findById(id);
+  @GetMapping("institutes/{instituteId}/students")
+  public Set<Student> getStudents(@PathVariable long instituteId) {
+    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
+    if (!instituteOptional.isPresent()) {
+      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
+    }
 
-		if (!student.isPresent())
-			return ResponseEntity.notFound().build();
+    return instituteOptional.get().getStudents();
+  }
 
-		return new ResponseEntity<Student>(student.get(), HttpStatus.OK);
-	}
-	
-	@DeleteMapping("/students/{id}")
-	void deleteStudent(@PathVariable Long id) {
-		service.deleteById(id);
-	}
-	
-	@PutMapping("/students/{id}")
-	ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable long id) {
+  @PostMapping("institutes/{instituteId}/students")
+  public Student createStudent(@PathVariable long instituteId, @RequestBody Student student) {
+    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
+    if (!instituteOptional.isPresent()) {
+      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
+    }
 
-		Optional<Student> studentOptional = service.findById(id);
+    student.setInstitute(instituteOptional.get());
 
-		if (!studentOptional.isPresent())
-			return ResponseEntity.notFound().build();
+    return studentService.save(student);
+  }
 
-		student.setId(id);
-		service.save(student);
-		
-		return new ResponseEntity<Student>(student, HttpStatus.OK);
-	}
+  @GetMapping("institutes/{instituteId}/students/{studentId}")
+  public Student getStudent(@PathVariable long instituteId, @PathVariable long studentId) {
+    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
+    if (!instituteOptional.isPresent()) {
+      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
+    }
+
+    Optional<Student> optionalStudent = studentService.findById(studentId);
+    if (!optionalStudent.isPresent()) {
+      throw new StudentNotFoundException("Student with id " + studentId + " not found");
+    }
+
+    return optionalStudent.get();
+  }
+
+  @DeleteMapping("institutes/{instituteId}/students/{studentId}")
+  public Student deleteStudent(@PathVariable Long instituteId, @PathVariable long studentId) {
+    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
+    if (!instituteOptional.isPresent()) {
+      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
+    }
+
+    Optional<Student> optionalStudent = studentService.findById(studentId);
+    if (!optionalStudent.isPresent()) {
+      throw new StudentNotFoundException("Student with id " + studentId + " not found");
+    }
+
+    studentService.deleteById(studentId);
+    return optionalStudent.get();
+  }
+
+  @PutMapping("institutes/{instituteId}/students/{studentId}")
+  public Student updateStudent(@PathVariable long instituteId, @PathVariable long studentId, @RequestBody Student student) {
+    Optional<Institute> instituteOptional = instituteService.findById(instituteId);
+    if (!instituteOptional.isPresent()) {
+      throw new InstituteNotFoundException("Institute with id " + instituteId + " not found");
+    }
+
+    Optional<Student> optionalStudent = studentService.findById(studentId);
+    if (!optionalStudent.isPresent()) {
+      throw new StudentNotFoundException("Student with id " + studentId + " not found");
+    }
+
+    student.setInstitute(instituteOptional.get());
+    student.setId(studentId);
+    return studentService.save(student);
+  }
 }
