@@ -2,8 +2,8 @@ INSERT INTO institutes(id, name, code, created_at, modified_at) VALUES
   (1001, 'Faculdade de Informática e Administração Paulista', 'FIAP', GETDATE(), GETDATE());
 
 INSERT INTO departments(id, name, code, institute_id, created_at, modified_at) VALUES
-  (1001, 'FIAP ON', 'FIAPON', 1001, GETDATE(), GETDATE()),
-  (1002, 'FIAP OFF', 'FIAPOFF', 1001, GETDATE(), GETDATE());
+  (1001, 'FIAP ON', 'FIAPON', 1001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (1002, 'FIAP OFF', 'FIAPOFF', 1001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO courses(id, name, department_id, created_at, modified_at) VALUES
   (1001, 'Análise e Desenvolvimento de sistemas', 1001, GETDATE(), GETDATE()),

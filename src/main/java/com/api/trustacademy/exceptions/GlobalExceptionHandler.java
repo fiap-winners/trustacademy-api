@@ -43,5 +43,15 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(globalExceptionResponse, HttpStatus.NOT_FOUND);
   }
 
+  @ExceptionHandler(DepartmentNotFoundException.class)
+  public final ResponseEntity<Object> handleUserNotFoundException(DepartmentNotFoundException ex, WebRequest req) {
+    GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
+      .timestamp(new GregorianCalendar())
+      .message(ex.getMessage())
+      .details(req.getDescription(false)).build();
+
+    return new ResponseEntity<>(globalExceptionResponse, HttpStatus.NOT_FOUND);
+  }
+
 
 }

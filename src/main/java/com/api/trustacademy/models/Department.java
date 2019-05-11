@@ -1,7 +1,7 @@
 package com.api.trustacademy.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,8 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -43,16 +44,17 @@ public class Department implements Serializable {
 	@Column
 	private String code;
 
-	@CreatedDate
-	private Date createdAt;
-
-	@LastModifiedDate
-	private Date modifiedAt;
-
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "institute_id", nullable = false)
 	private Institute institute;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department")
 	private Set<Course> courses;
+
+	@CreationTimestamp
+	private Calendar createdAt;
+
+	@UpdateTimestamp
+	private Calendar modifiedAt;
 }
