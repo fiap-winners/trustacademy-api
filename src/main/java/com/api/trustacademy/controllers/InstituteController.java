@@ -3,12 +3,14 @@ package com.api.trustacademy.controllers;
 import com.api.trustacademy.exceptions.InstituteNotFoundException;
 import com.api.trustacademy.models.Institute;
 import com.api.trustacademy.services.InstituteService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
+@Api(tags="Institute", description = "Manage an institute")
 public class InstituteController {
 
   private InstituteService instituteService;

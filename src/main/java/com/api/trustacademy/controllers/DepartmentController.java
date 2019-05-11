@@ -4,6 +4,7 @@ import com.api.trustacademy.exceptions.DepartmentNotFoundException;
 import com.api.trustacademy.models.Department;
 import com.api.trustacademy.models.Institute;
 import com.api.trustacademy.services.DepartamentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@Api(tags="Department", description = "Manage the departments of an academic institute")
 public class DepartmentController {
 
   private InstituteController instituteController;

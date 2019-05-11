@@ -4,6 +4,7 @@ import com.api.trustacademy.exceptions.CourseNotFoundException;
 import com.api.trustacademy.models.Course;
 import com.api.trustacademy.models.Department;
 import com.api.trustacademy.services.CourseService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@Api(tags="Course", description = "Manage the courses within an academic institute's department")
 public class CourseController {
 
   private DepartmentController departmentController;

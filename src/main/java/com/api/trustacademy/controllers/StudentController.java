@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.api.trustacademy.exceptions.StudentNotFoundException;
 import com.api.trustacademy.models.Institute;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import com.api.trustacademy.models.Student;
 import com.api.trustacademy.services.StudentService;
 
 @RestController
+@Api(tags="Student", description = "Manage the students of an academic institute")
 public class StudentController {
 
   private StudentService studentService;

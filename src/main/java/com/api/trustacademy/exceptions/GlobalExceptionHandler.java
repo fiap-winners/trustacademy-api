@@ -73,4 +73,14 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(globalExceptionResponse, HttpStatus.NOT_FOUND);
   }
 
+  @ExceptionHandler(DocumentNotFoundException.class)
+  public final ResponseEntity<Object> handleDocumentNotFoundException(DocumentNotFoundException ex, WebRequest req) {
+    GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
+      .timestamp(new GregorianCalendar())
+      .message(ex.getMessage())
+      .details(req.getDescription(false)).build();
+
+    return new ResponseEntity<>(globalExceptionResponse, HttpStatus.NOT_FOUND);
+  }
+
 }

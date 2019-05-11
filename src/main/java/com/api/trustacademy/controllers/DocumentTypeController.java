@@ -4,6 +4,7 @@ import com.api.trustacademy.exceptions.DocumentTypeNotFoundException;
 import com.api.trustacademy.models.DocumentType;
 import com.api.trustacademy.models.Institute;
 import com.api.trustacademy.services.DocumentTypeService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@Api(tags="Document Type", description = "Manage the document types of an academic institute")
 public class DocumentTypeController {
 
   private InstituteController instituteController;
