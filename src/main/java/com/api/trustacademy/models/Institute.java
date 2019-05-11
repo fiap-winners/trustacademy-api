@@ -1,7 +1,7 @@
 package com.api.trustacademy.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,11 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -41,21 +41,25 @@ public class Institute implements Serializable {
 	@Column
 	private String code;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Department> departments;
 
+  @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Student> students;
 
+  @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<Document> documents;
 
+  @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
 	private Set<DocumentType> documentTypes;
 
-	@CreatedDate
-	private Date createdAt;
+	@CreationTimestamp
+	private Calendar createdAt;
 
-	@LastModifiedDate
-	private Date modifiedAt;
+	@UpdateTimestamp
+	private Calendar modifiedAt;
 }
