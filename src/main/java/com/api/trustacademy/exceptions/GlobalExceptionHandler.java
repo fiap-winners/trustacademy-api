@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(InstituteNotFoundException.class)
-  public final ResponseEntity<Object> handleUserNotFoundException(InstituteNotFoundException ex, WebRequest req) {
+  public final ResponseEntity<Object> handleInstituteNotFoundException(InstituteNotFoundException ex, WebRequest req) {
     GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
       .timestamp(new GregorianCalendar())
       .message(ex.getMessage())
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(StudentNotFoundException.class)
-  public final ResponseEntity<Object> handleUserNotFoundException(StudentNotFoundException ex, WebRequest req) {
+  public final ResponseEntity<Object> handleStudentNotFoundException(StudentNotFoundException ex, WebRequest req) {
     GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
       .timestamp(new GregorianCalendar())
       .message(ex.getMessage())
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(DepartmentNotFoundException.class)
-  public final ResponseEntity<Object> handleUserNotFoundException(DepartmentNotFoundException ex, WebRequest req) {
+  public final ResponseEntity<Object> handleDepartmentNotFoundException(DepartmentNotFoundException ex, WebRequest req) {
     GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
       .timestamp(new GregorianCalendar())
       .message(ex.getMessage())
@@ -54,7 +54,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(DocumentTypeNotFoundException.class)
-  public final ResponseEntity<Object> handleUserNotFoundException(DocumentTypeNotFoundException ex, WebRequest req) {
+  public final ResponseEntity<Object> handleDocumentTypeNotFoundException(DocumentTypeNotFoundException ex, WebRequest req) {
     GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
       .timestamp(new GregorianCalendar())
       .message(ex.getMessage())
@@ -63,5 +63,14 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(globalExceptionResponse, HttpStatus.NOT_FOUND);
   }
 
+  @ExceptionHandler(CourseNotFoundException.class)
+  public final ResponseEntity<Object> handleCourseNotFoundException(CourseNotFoundException ex, WebRequest req) {
+    GlobalExceptionResponse globalExceptionResponse = GlobalExceptionResponse.builder()
+      .timestamp(new GregorianCalendar())
+      .message(ex.getMessage())
+      .details(req.getDescription(false)).build();
+
+    return new ResponseEntity<>(globalExceptionResponse, HttpStatus.NOT_FOUND);
+  }
 
 }
