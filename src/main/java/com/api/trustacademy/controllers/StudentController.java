@@ -56,6 +56,7 @@ public class StudentController {
 
     Student student = optionalStudent.get();
 
+    // IMPORTANT: ensure student actually belongs to institute before returning it
     if (!student.getInstitute().getId().equals(institute.getId())) {
       throw studentNotFoundException;
     }
