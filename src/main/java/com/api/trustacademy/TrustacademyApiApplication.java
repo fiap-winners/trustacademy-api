@@ -9,13 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class TrustacademyApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TrustacademyApiApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(TrustacademyApiApplication.class, args);
+  }
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-	  return new WebMvcConfigurer() {
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
       @Override
       public void addCorsMappings(CorsRegistry registry) {
         registry
