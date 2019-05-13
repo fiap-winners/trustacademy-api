@@ -12,22 +12,22 @@ import com.api.trustacademy.repositories.CourseRepository;
 @Service
 public class CourseService {
 
-	@Autowired
-	CourseRepository repository;
+  @Autowired
+  CourseRepository repository;
 
-	public List<Course> findAll() {
-		return repository.findAll();
-	}
+  public List<Course> findAll() {
+    return repository.findAll();
+  }
 
-	public Optional<Course> findById(Long id) {
-		return repository.findById(id);
-	}
+  public Optional<Course> findById(Long id) {
+    return repository.findById(id);
+  }
 
-	public Course save(Course course) {
-		return repository.save(course);
-	}
+  public Course save(Course course) {
+    return repository.save(course);
+  }
 
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }

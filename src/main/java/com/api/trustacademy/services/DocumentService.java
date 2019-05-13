@@ -12,22 +12,22 @@ import com.api.trustacademy.repositories.DocumentRepository;
 @Service
 public class DocumentService {
 
-	@Autowired
-	DocumentRepository repository;
+  @Autowired
+  DocumentRepository repository;
 
-	public List<Document> findAll() {
-		return repository.findAll();
-	}
+  public List<Document> findAll() {
+    return repository.findAll();
+  }
 
-	public Optional<Document> findById(Long id) {
-		return repository.findById(id);
-	}
+  public Optional<Document> findById(Long id) {
+    return repository.findById(id);
+  }
 
-	public Document save(Document document) {
-		return repository.save(document);
-	}
+  public Document save(Document document) {
+    return repository.save(document);
+  }
 
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }

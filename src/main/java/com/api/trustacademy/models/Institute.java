@@ -47,7 +47,6 @@ public class Institute implements Serializable {
   private Set<Student> students;
 
   @JsonIgnore
-  @JsonManagedReference
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "institute")
   private Set<Document> documents;
 

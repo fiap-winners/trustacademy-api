@@ -32,29 +32,29 @@ import lombok.Setter;
 @Table(name = "departments")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Department implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-	@Column
-	private String name;
+  @Column
+  private String name;
 
-	@Column
-	private String code;
+  @Column
+  private String code;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "institute_id", nullable = false)
-	private Institute institute;
+  @JsonIgnore
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "institute_id", nullable = false)
+  private Institute institute;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department")
-	private Set<Course> courses;
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department")
+  private Set<Course> courses;
 
-	@CreationTimestamp
-	private Calendar createdAt;
+  @CreationTimestamp
+  private Calendar createdAt;
 
-	@UpdateTimestamp
-	private Calendar modifiedAt;
+  @UpdateTimestamp
+  private Calendar modifiedAt;
 }

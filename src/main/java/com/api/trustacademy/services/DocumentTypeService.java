@@ -12,22 +12,22 @@ import com.api.trustacademy.repositories.DocumentTypeRepository;
 @Service
 public class DocumentTypeService {
 
-	@Autowired
-	DocumentTypeRepository repository;
+  @Autowired
+  DocumentTypeRepository repository;
 
-	public List<DocumentType> findAll() {
-		return repository.findAll();
-	}
+  public List<DocumentType> findAll() {
+    return repository.findAll();
+  }
 
-	public Optional<DocumentType> findById(Long id) {
-		return repository.findById(id);
-	}
+  public Optional<DocumentType> findById(Long id) {
+    return repository.findById(id);
+  }
 
-	public DocumentType save(DocumentType documentType) {
-		return repository.save(documentType);
-	}
+  public DocumentType save(DocumentType documentType) {
+    return repository.save(documentType);
+  }
 
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }

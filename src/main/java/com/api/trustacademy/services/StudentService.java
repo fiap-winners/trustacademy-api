@@ -12,22 +12,22 @@ import com.api.trustacademy.repositories.StudentRepository;
 @Service
 public class StudentService {
 
-	@Autowired
-	StudentRepository repository;
+  @Autowired
+  StudentRepository repository;
 
-	public List<Student> findAll() {
-		return repository.findAll();
-	}
+  public List<Student> findAll() {
+    return repository.findAll();
+  }
 
-	public Optional<Student> findById(Long id) {
-		return repository.findById(id);
-	}
+  public Optional<Student> findById(Long id) {
+    return repository.findById(id);
+  }
 
-	public Student save(Student student) {
-		return repository.save(student);
-	}
+  public Student save(Student student) {
+    return repository.save(student);
+  }
 
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }
