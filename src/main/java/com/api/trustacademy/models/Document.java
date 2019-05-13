@@ -2,20 +2,16 @@ package com.api.trustacademy.models;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.api.trustacademy.serializers.*;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Getter
 @Setter
@@ -31,27 +27,27 @@ public class Document implements Serializable {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIdentityReference(alwaysAsId = true)
+	@JsonSerialize(using= StudentSerializer.class)
 	@JoinColumn(name = "student_id", nullable = false)
 	private Student student;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIdentityReference(alwaysAsId = true)
+	@JsonSerialize(using= InstituteSerializer.class)
 	@JoinColumn(name = "institute_id", nullable = false)
 	private Institute institute;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIdentityReference(alwaysAsId = true)
+	@JsonSerialize(using= DepartmentSerializer.class)
 	@JoinColumn(name = "department_id", nullable = false)
 	private Department department;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIdentityReference(alwaysAsId = true)
+	@JsonSerialize(using= CourseSerializer.class)
 	@JoinColumn(name = "course_id", nullable = false)
 	private Course course;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIdentityReference(alwaysAsId = true)
+	@JsonSerialize(using= DocumentTypeSerializer.class)
 	@JoinColumn(name = "document_type_id")
 	private DocumentType type;
 
