@@ -11,7 +11,7 @@ import com.amazonaws.util.IOUtils;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.Image;
@@ -32,7 +32,7 @@ public class AWSRekognitionGateway {
 	    clientConfig.setRequestTimeout(60000);
 	    clientConfig.setProtocol(Protocol.HTTPS);
 	    
-		AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider("trustacademy-api-rekognition");
+		AWSCredentialsProvider credentialsProvider = DefaultAWSCredentialsProviderChain.getInstance();
 		
 		AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder
 				.standard()

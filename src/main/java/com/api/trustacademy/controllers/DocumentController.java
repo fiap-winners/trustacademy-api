@@ -1,8 +1,13 @@
 package com.api.trustacademy.controllers;
 
+
 import com.api.trustacademy.exceptions.DocumentNotFoundException;
 import com.api.trustacademy.gateways.AWSRekognitionGateway;
-import com.api.trustacademy.models.*;
+import com.api.trustacademy.models.Course;
+import com.api.trustacademy.models.Document;
+import com.api.trustacademy.models.DocumentType;
+import com.api.trustacademy.models.Institute;
+import com.api.trustacademy.models.Student;
 import com.api.trustacademy.services.DocumentService;
 
 import io.swagger.annotations.Api;
