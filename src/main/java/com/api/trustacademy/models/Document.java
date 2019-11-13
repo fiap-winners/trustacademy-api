@@ -54,9 +54,6 @@ public class Document implements Serializable {
   @Column
   private String content;
 
-  @Column
-  private boolean verified;
-
   @CreationTimestamp
   private Calendar createdAt;
 

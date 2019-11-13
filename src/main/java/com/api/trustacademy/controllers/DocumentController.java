@@ -83,6 +83,7 @@ public class DocumentController {
 			@RequestPart MultipartFile targetImage) {
 
 		boolean facesMatch = rekognitionGateway.compareFaces(sourceImage, targetImage);
+
 		if (facesMatch) {
 			Course course = courseController.getCourse(instituteId, departmentId, courseId);
 			Student student = studentController.getStudent(instituteId, studentId);
@@ -91,7 +92,6 @@ public class DocumentController {
 			Document document = new Document();
 
 			document.setContent(content);
-			document.setVerified(false);
 			document.setInstitute(student.getInstitute());
 			document.setDepartment(course.getDepartment());
 			document.setCourse(course);
@@ -100,8 +100,6 @@ public class DocumentController {
 
 			return documentService.save(document);
 		}
-
 		return null;
-
 	}
 }
