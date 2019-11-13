@@ -8,6 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import com.amazonaws.util.IOUtils;
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.Protocol;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.Image;
@@ -25,15 +29,27 @@ public class AWSRekognitionGateway {
 		ByteBuffer sourceImageBytes = null;
 		ByteBuffer targetImageBytes = null;
 
-		AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
+		ClientConfiguration clientConfig = new ClientConfiguration();
+	    clientConfig.setConnectionTimeout(30000);
+	    clientConfig.setRequestTimeout(60000);
+	    clientConfig.setProtocol(Protocol.HTTPS);
+	    
+		AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider("trustacademy-api-rekognition");
+		
+		AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder
+				.standard()
+		        .withClientConfiguration(clientConfig)
+		        .withCredentials(credentialsProvider)
+		        .withRegion("us-east-1")
+		        .build();
 
-		// Load source and target images and create input parameters
 		try (InputStream inputStream = sourceImage.getInputStream()) {
 			sourceImageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
 		} catch (Exception e) {
 			System.out.println("Failed to load source image " + sourceImage);
 			return false;
 		}
+		
 		try (InputStream inputStream = targetImage.getInputStream()) {
 			targetImageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
 		} catch (Exception e) {
@@ -47,21 +63,14 @@ public class AWSRekognitionGateway {
 		CompareFacesRequest request = new CompareFacesRequest().withSourceImage(source).withTargetImage(target)
 				.withSimilarityThreshold(similarityThreshold);
 
-		// Call operation
 		CompareFacesResult compareFacesResult = rekognitionClient.compareFaces(request);
 
-		// Display results
 		List<CompareFacesMatch> faceDetails = compareFacesResult.getFaceMatches();
-		for (CompareFacesMatch match : faceDetails) {
-			ComparedFace face = match.getFace();
-			BoundingBox position = face.getBoundingBox();
-			System.out.println("Face at " + position.getLeft().toString() + " " + position.getTop() + " matches with "
-					+ match.getSimilarity().toString() + "% confidence.");
-
+		
+		if (faceDetails.size() > 0) {
+			return true;
 		}
-		List<ComparedFace> uncompared = compareFacesResult.getUnmatchedFaces();
-
-		System.out.println("There was " + uncompared.size() + " face(s) that did not match");
+		
 		return false;
 	}
 }
