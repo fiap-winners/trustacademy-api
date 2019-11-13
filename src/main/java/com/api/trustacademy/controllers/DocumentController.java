@@ -79,8 +79,8 @@ public class DocumentController {
 	@PostMapping("institutes/{instituteId}/departments/{departmentId}/courses/{courseId}/students/{studentId}/document-types/{documentTypeId}/documents/with-face-recognition")
 	public Document createDocumentWithFaceRecognition(@PathVariable long instituteId, @PathVariable long departmentId,
 			@PathVariable long courseId, @PathVariable long studentId, @PathVariable long documentTypeId,
-			@RequestParam String content, @RequestParam MultipartFile sourceImage,
-			@RequestParam MultipartFile targetImage) {
+			@RequestPart String content, @RequestPart MultipartFile sourceImage,
+			@RequestPart MultipartFile targetImage) {
 
 		boolean facesMatch = rekognitionGateway.compareFaces(sourceImage, targetImage);
 		if (facesMatch) {
@@ -91,6 +91,7 @@ public class DocumentController {
 			Document document = new Document();
 
 			document.setContent(content);
+			document.setVerified(false);
 			document.setInstitute(student.getInstitute());
 			document.setDepartment(course.getDepartment());
 			document.setCourse(course);
